@@ -26,7 +26,7 @@ try:
 except ValueError:
     raise SystemExit()
 try:
-    req_vol = float(input('State the required max volatility for the portfolio to be built: '))
+    req_vol = float(input('State the required max volatility for the portfolio to be built (in p.p.): '))
 except ValueError:
     raise SystemExit()
 
@@ -38,4 +38,6 @@ denom = 100 * (math.sqrt(np.dot(sharpe_ptf, np.matmul(V, sharpe_ptf))))
 beta = (nom) / (denom)
 rate = rf_rate + beta * req_vol
 
-print('The Sharpe ptf has weights: \n % \n and its rate of return amounts to \n %f' % (np.array_str(sharpe_ptf), rate))
+ptf_string = np.array_str(sharpe_ptf)
+
+print('\nThe Sharpe ptf has weights:\n\n\t%s\n\nand its rate of return amounts to:\n\n\t%f\n' % (ptf_string, rate))
